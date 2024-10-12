@@ -1,0 +1,3 @@
+<view class='catch' bind:tap="handleFunctionFather" data-preid="2">
+	<button type="primary" size="mini" catch:tap="handleFunction" data-id="1" data-name="tom-cat">触发事件</button>
+</view>

@@ -1,0 +1,161 @@
+page {
+	background-color: #efefef !important;
+	padding: 16rpx;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+
+	>view {
+		&:nth-child(n+2) {
+			margin-top: 16rpx;
+		}
+	}
+}
+
+.swiper {
+	border-radius: 10rpx;
+	overflow: hidden;
+
+	swiper {
+		height: 360rpx;
+
+		swiper-item {
+			image {
+				border-radius: 10rpx;
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+}
+
+.info {
+	display: flex;
+	justify-content: space-between;
+	background: #fff;
+	padding: 16rpx 20rpx;
+	border-radius: 10rpx;
+	font-size: 24rpx;
+
+	.iconfont {
+		font-size: 24rpx;
+		margin-right: 2rpx;
+	}
+}
+
+.good-nav {
+	display: flex;
+	justify-content: space-between;
+	background-color: #fff;
+	padding: 20rpx 16rpx;
+	border-radius: 10rpx;
+
+	view {
+		navigator {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		image {
+			width: 80rpx;
+			height: 80rpx;
+		}
+
+		text {
+			font-size: 24rpx;
+			margin-top: 12rpx;
+		}
+	}
+}
+
+.good-hot {
+	background-color: #fff;
+	padding: 16rpx;
+	border-radius: 10rpx;
+	font-size: 24rpx;
+
+	.scroll-x {
+		width: 100%;
+		white-space: nowrap;
+
+		view {
+			display: inline-block;
+			width: 320rpx;
+			height: 360rpx;
+			margin-right: 16rpx;
+
+			.good-item {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+
+				view {
+					width: 320rpx;
+					height: 40rpx;
+					display: flex;
+					margin-left: 2rpx;
+					margin-top: 20rpx;
+					justify-content: start;
+					line-height: 40rpx;
+
+					text {
+						color: crimson;
+
+						&:nth-of-type(1) {
+							font-weight: bold;
+						}
+
+						&:nth-child(n+2) {
+							color: rgb(16, 74, 97);
+							margin-left: 2rpx;
+						}
+					}
+
+					image {
+						height: 40rpx;
+						width: 40rpx;
+
+						&:nth-child(n+2) {
+							margin-left: 30rpx;
+						}
+					}
+				}
+			}
+
+			image {
+				width: 100%;
+				height: 320rpx;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+}
+
+.auth {
+
+	height: 380rpx;
+	padding: 16rpx;
+	border-radius: 10rpx;
+	background-color: #fff;
+
+	.auth-scroll {
+		width: 100%;
+		white-space: nowrap;
+
+		view {
+			display: inline-block;
+			padding: 5rpx;
+			border-radius: 10rpx;
+
+			image {
+				border-radius: 10rpx;
+				height: 380rpx;
+				width: 380rpx;
+			}
+		}
+	}
+}
