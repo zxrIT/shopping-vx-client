@@ -1,13 +1,13 @@
 <view class="swiper">
 	<swiper autoplay interval="2000" circular indicator-dots indicator-color="#fff" indicator-active-color="#f3514f">
 		<swiper-item>
-			<image src="../../assets/banner/banner-1.png" mode="aspectFill" />
+			<image src="http://localhost:8080/static/swiper/swiper1.png" mode="aspectFill" />
 		</swiper-item>
 		<swiper-item>
-			<image src="../../assets/banner/banner-2.png" mode="aspectFill" />
+			<image src="http://localhost:8080/static/swiper/swiper2.png" mode="aspectFill" />
 		</swiper-item>
 		<swiper-item>
-			<image src="../../assets/banner/banner-3.png" mode="aspectFill" />
+			<image src="http://localhost:8080/static/swiper/swiper3.png" mode="aspectFill" />
 		</swiper-item>
 	</swiper>
 </view>
@@ -20,32 +20,32 @@
 </view>
 
 <view class="good-nav">
-	<view>
-		<navigator url="/pages/list/list">
+	<view bind:tap="navigateTo">
+		<navigator url="/pages/cate/cate">
 			<image src="../.././assets/category/cate-1.png" />
 			<text>鲜花玫瑰</text>
 		</navigator>
 	</view>
-	<view>
-		<navigator url="/pages/list/list">
+	<view bind:tap="navigateTo">
+		<navigator url="/pages/cate/cate" >
 			<image src="../.././assets/category/cate-2.png" />
 			<text>惊喜鲜花</text>
 		</navigator>
 	</view>
-	<view>
-		<navigator url="/pages/list/list">
+	<view bind:tap="navigateTo">
+		<navigator url="/pages/cate/cate">
 			<image src="../.././assets/category/cate-3.png" />
 			<text>生日礼物</text>
 		</navigator>
 	</view>
-	<view>
-		<navigator url="/pages/list/list">
+	<view bind:tap="navigateTo">
+		<navigator url="/pages/cate/cate">
 			<image src="../.././assets/category/cate-4.png" />
 			<text>情人礼物</text>
 		</navigator>
 	</view>
-	<view>
-		<navigator url="/pages/list/list">
+	<view bind:tap="navigateTo">
+		<navigator url="/pages/cate/cate">
 			<image src="../.././assets/category/cate-5.png" />
 			<text>浪漫花语</text>
 		</navigator>
@@ -54,60 +54,12 @@
 
 <view class="good-hot">
 	<scroll-view scroll-x class="scroll-x">
-		<view>
+		<view wx:for="{{hotProductData}}" wx:key="id">
 			<view class="good-item">
-				<image src="../../assets/floor/1.png" mode="aspectFill" />
+				<image src="{{item.productImage}}" mode="aspectFill" />
 				<view>
-					<text>¥224</text>
-					<image src="../../assets/floor/increament.png" mode="aspectFill" />
-					<text>收藏</text>
-					<image src="../../assets/floor/shop.png" mode="aspectFill" />
-					<text>购买</text>
-				</view>
-			</view>
-		</view>
-		<view>
-			<view class="good-item">
-				<image src="../../assets/floor/2.png" mode="aspectFill" />
-				<view>
-					<text>¥215</text>
-					<image src="../../assets/floor/increament.png" mode="aspectFill" />
-					<text>收藏</text>
-					<image src="../../assets/floor/shop.png" mode="aspectFill" />
-					<text>购买</text>
-				</view>
-			</view>
-		</view>
-		<view>
-			<view class="good-item">
-				<image src="../../assets/floor/3.png" mode="aspectFill" />
-				<view>
-					<text>¥210</text>
-					<image src="../../assets/floor/increament.png" mode="aspectFill" />
-					<text>收藏</text>
-					<image src="../../assets/floor/shop.png" mode="aspectFill" />
-					<text>购买</text>
-				</view>
-			</view>
-		</view>
-		<view>
-			<view class="good-item">
-				<image src="../../assets/floor/4.png" mode="aspectFill" />
-				<view>
-					<text>¥179</text>
-					<image src="../../assets/floor/increament.png" mode="aspectFill" />
-					<text>收藏</text>
-					<image src="../../assets/floor/shop.png" mode="aspectFill" />
-					<text>购买</text>
-				</view>
-			</view>
-		</view>
-		<view>
-			<view class="good-item">
-				<image src="../../assets/floor/5.png" mode="aspectFill" />
-				<view>
-					<text>¥299</text>
-					<image src="../../assets/floor/increament.png" mode="aspectFill" />
+					<text>¥{{item.price}}</text>
+					<image src="../../assets/floor/increament.png" mode="aspectFill"/>
 					<text>收藏</text>
 					<image src="../../assets/floor/shop.png" mode="aspectFill" />
 					<text>购买</text>
@@ -119,29 +71,8 @@
 
 <view class="auth">
 	<scroll-view scroll-x class="auth-scroll">
-		<view>
-			<image src="../../assets/star/1.png" mode="aspectFill" />
-		</view>
-		<view>
-			<image src="../../assets/star/2.png" mode="aspectFill" />
-		</view>
-		<view>
-			<image src="../../assets/star/3.png" mode="aspectFill" />
-		</view>
-		<view>
-			<image src="../../assets/star/4.png" mode="aspectFill" />
-		</view>
-		<view>
-			<image src="../../assets/star1/5.png" mode="aspectFill" />
-		</view>
-		<view>
-			<image src="../../assets/star1/6.png" mode="aspectFill" />
-		</view>
-		<view>
-			<image src="../../assets/star1/7.png" mode="aspectFill" />
-		</view>
-		<view>
-			<image src="../../assets/star1/8.png" mode="aspectFill" />
+		<view wx:for="{{otherProductData}}" wx:key="id">
+			<image src="{{item.productImage}}" mode="aspectFill" />
 		</view>
 	</scroll-view>
 </view>
