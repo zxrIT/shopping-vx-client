@@ -8,14 +8,12 @@
 </view>
 <view class="productBox">
 	<view class="productList">
-		<view wx:for="{{productList}}" class="productItem" wx:key="id">
-			<navigator>
-				<image mode="aspectFill" src="{{baseUrl+'/static/product/'+item.productImageChoice}}" />
-				<view class="productName">{{"["+item.productName+"]"+(item.description?item.description:"")}}</view>
-				<view class="productPrice">
-					¥{{item.price}}<text>¥{{item.originalPrice}}</text>
-				</view>
-			</navigator>
+		<view wx:for="{{productList}}" class="productItem" wx:key="id" bind:tap="navigate" mark:id="{{item.id}}">
+			<image mode="aspectFill" src="{{baseUrl+'/static/product/'+item.productImageChoice}}" />
+			<view class="productName">{{"["+item.productName+"]"+(item.description?item.description:"")}}</view>
+			<view class="productPrice">
+				¥{{item.price}}<text>¥{{item.originalPrice}}</text>
+			</view>
 		</view>
 	</view>
 </view>

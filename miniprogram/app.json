@@ -4,26 +4,43 @@
     "pages/index/index",
     "pages/cate/cate",
     "pages/cart/cart",
-    "pages/profile/profile"
+    "pages/profile/profile",
+    "pages/detail/detail"
   ],
   "window": {
     "navigationBarTitleText": "小张花坊",
     "navigationBarBackgroundColor": "#f3514f",
     "enablePullDownRefresh": true,
     "backgroundColor": "#efefef",
-    "backgroundTextStyle":"dark"
+    "backgroundTextStyle": "dark"
   },
   "tabBar": {
     "selectedColor": "#f3514f",
     "color": "#666",
     "list": [
-      {"text": "首页","pagePath": "pages/index/index","iconPath": "/assets/tabbar/home.png","selectedIconPath": "/assets/tabbar/home-active.png"},
       {
-        "text": "分类","pagePath": "pages/cate/cate","iconPath": "/assets/tabbar/sort.png","selectedIconPath": "/assets/tabbar/sort-active.png"},
+        "text": "首页",
+        "pagePath": "pages/index/index",
+        "iconPath": "/assets/tabbar/home.png",
+        "selectedIconPath": "/assets/tabbar/home-active.png"
+      },
       {
-          "text": "购物车","pagePath": "pages/cart/cart","iconPath": "/assets/tabbar/cart.png","selectedIconPath": "/assets/tabbar/cart-active.png"},
+        "text": "分类",
+        "pagePath": "pages/cate/cate",
+        "iconPath": "/assets/tabbar/sort.png",
+        "selectedIconPath": "/assets/tabbar/sort-active.png"
+      },
       {
-          "text": "我的","pagePath": "pages/profile/profile","iconPath": "/assets/tabbar/myself.png","selectedIconPath": "/assets/tabbar/myself-active.png"
+        "text": "购物袋",
+        "pagePath": "pages/cart/cart",
+        "iconPath": "/assets/tabbar/cart.png",
+        "selectedIconPath": "/assets/tabbar/cart-active.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/profile/profile",
+        "iconPath": "/assets/tabbar/myself.png",
+        "selectedIconPath": "/assets/tabbar/myself-active.png"
       }
     ]
   },

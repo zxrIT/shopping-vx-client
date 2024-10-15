@@ -33,6 +33,7 @@
 }
 
 .productBox {
+	margin-top: 20rpx;
 	width: 100%;
 
 	.productList {
@@ -45,33 +46,31 @@
 			text-align: center;
 			margin: 15rpx;
 
-			navigator {
-				image {
-					width: 100%;
-					border-radius: 5%;
-				}
+			image {
+				width: 100%;
+				border-radius: 5%;
+			}
 
-				.productName {
-					color: black;
-					overflow: hidden;
-					white-space: nowrap;
-					text-overflow: ellipsis;
-				}
+			.productName {
+				color: black;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+			.productPrice {
+				margin-left: 10rpx;
+				text-align: left;
+				font-size: 40rpx;
+				color: #f3514f;
 
-				.productPrice {
-					margin-left: 10rpx;
-					text-align: left;
-					font-size: 40rpx;
-					color: #f3514f;
-
-					text {
-						margin-left: 20rpx;
-						color: rgb(165, 161, 161);
-						font-size: 30rpx;
-						text-decoration: line-through
-					}
+				text {
+					margin-left: 20rpx;
+					color: rgb(165, 161, 161);
+					font-size: 30rpx;
+					text-decoration: line-through
 				}
 			}
+
 		}
 	}
 }

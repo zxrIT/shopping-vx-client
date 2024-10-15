@@ -7,5 +7,7 @@ export interface ProductData {
 	description: string,
 	productType: number,
 	productImageChoice: string,
-	originalPrice: string
+	originalPrice: string,
+	images: number,
+	flowerLanguage: string
 }

@@ -1,0 +1,56 @@
+<view class="productSwiper">
+	<swiper autoplay interval="2000" circular indicator-dots indicator-color="#fff" indicator-active-color="#f3514f">
+		<swiper-item>
+			<image src="{{baseUrl+'/static/details/'+imagesId+'/1.png'}}" mode="aspectFill" />
+		</swiper-item>
+		<swiper-item>
+			<image src="{{baseUrl+'/static/details/'+imagesId+'/2.png'}}" mode="aspectFill" />
+		</swiper-item>
+		<swiper-item>
+			<image src="{{baseUrl+'/static/details/'+imagesId+'/3.png'}}" mode="aspectFill" />
+		</swiper-item>
+		<swiper-item>
+			<image src="{{baseUrl+'/static/details/'+imagesId+'/4.png'}}" mode="aspectFill" />
+		</swiper-item>
+	</swiper>
+</view>
+<view class="product">
+	<view class="productName">{{"["+productDetail.productName+"]"+"花语："+productDetail.flowerLanguage}}</view>
+	<view class="productDescription">{{"描述："+productDetail.description}}</view>
+	<view class="productPrice">
+		¥{{productDetail.price}} <text>¥{{productDetail.originalPrice}}</text>
+	</view>
+</view>
+<view class="other">
+	<image src="../../assets/details/service.png" />
+</view>
+<view class="other">
+	<image src="../../assets/details/noticeThat.png" />
+</view>
+<view class="other">
+	<image src="../../assets/details/promise.png" />
+</view>
+<view class="other">
+	<image src="../../assets/details/delivery.png" />
+</view>
+
+<view class="util">
+	<view class="util-other" bind:tap="navigate">
+		<image src="../../assets/details/home.png" />
+		<view>首页</view>
+	</view>
+	<view class="util-other">
+		<image src="../../assets/details/collect.png" />
+		<view>收藏</view>
+	</view>
+	<view class="util-other">
+		<image src="../../assets/details/customerService.png" />
+		<view>客服</view>
+	</view>
+	<view class="util-cart">
+		<view>加入购物袋</view>
+	</view>
+	<view class="util-shop">
+		<view>立即购买</view>
+	</view>
+</view>

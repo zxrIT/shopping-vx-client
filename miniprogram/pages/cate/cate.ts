@@ -5,13 +5,18 @@ import type { ResponseData } from "../../../typings/response/responseData"
 import type { ProductType } from "../../../typings/response/product/productType"
 
 Page({
+	navigate: function navigate(event: any) {
+		wx.navigateTo({
+			url: "/pages/detail/detail?id=" + event.mark.id
+		})
+	},
 	changeChoiceStatus(event: any) {
 		this.setData({
 			productTypeChoiceStatus: event.mark.id
 		})
 	},
 	data: {
-		productActionStyle: "background-color: #f3514f;color: black;",
+		productActionStyle: "background-color: #ff9694;color: black;",
 		productTypeChoiceStatus: 0 as number,
 		baseUrl: "" as string,
 		productTypeData: [] as ProductType[],
