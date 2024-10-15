@@ -1,5 +1,21 @@
-<view>
-	<text wx:for="{{object}}" wx:key="id">
-		{{item.id}}:{{item.title}}
-	</text>
+<view class="choiceBox">
+	<scroll-view scroll-x class="choiceScroll">
+		<view wx:for="{{productTypeData}}" class="choiceItem" style="{{productTypeChoiceStatus===item.id?productActionStyle:''}}" wx:key="id" bind:tap="changeChoiceStatus" mark:id="{{item.id}}">
+			<image src="{{baseUrl+'/static/type/'+item.typeImage}}" mode="aspectFill" />
+			<view>{{item.typeName}}</view>
+		</view>
+	</scroll-view>
+</view>
+<view class="productBox">
+	<view class="productList">
+		<view wx:for="{{productList}}" class="productItem" wx:key="id">
+			<navigator>
+				<image mode="aspectFill" src="{{baseUrl+'/static/product/'+item.productImageChoice}}" />
+				<view class="productName">{{"["+item.productName+"]"+(item.description?item.description:"")}}</view>
+				<view class="productPrice">
+					¥{{item.price}}<text>¥{{item.originalPrice}}</text>
+				</view>
+			</navigator>
+		</view>
+	</view>
 </view>

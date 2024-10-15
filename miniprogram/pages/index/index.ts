@@ -9,7 +9,10 @@ Page({
 		otherProductData: [] as ProductData[]
 	},
 	onLoad: function () {
-		this.data.baseUrl = getBaseUrl()
+		const baseUrl: string = getBaseUrl()
+		this.setData({
+			baseUrl: baseUrl
+		})
 		requestFunction<ResponseData<ProductData[]>>({
 			url: "http://localhost:8080/product/getHotProduct"
 			, method: "GET"
@@ -39,6 +42,5 @@ Page({
 		wx.switchTab({
 			url: "/pages/cate/cate"
 		})
-		console.log("hahahhahahah")
 	}
 })

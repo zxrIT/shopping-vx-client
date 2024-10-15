@@ -5,5 +5,7 @@ export interface ProductData {
 	productImage: string,
 	collect: boolean
 	description: string,
-	productType: number
+	productType: number,
+	productImageChoice: string,
+	originalPrice: string
 }
