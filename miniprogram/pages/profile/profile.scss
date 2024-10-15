@@ -1,1 +1,122 @@
-/* pages/profile/profile.wxss */
+page {
+	background-color: #efefef !important;
+	padding: 16rpx;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+
+	>view {
+		&:nth-child(n+2) {
+			margin-top: 16rpx;
+		}
+	}
+}
+
+.profileBgc {
+	width: 100%;
+	height: 400rpx;
+
+	image {
+		width: 100%;
+		height: 100%;
+		border-radius: 5%;
+	}
+}
+
+.profileFeature {
+	background-color: #ffff !important;
+	width: 100%;
+	height: 350rpx;
+	border-radius: 5%;
+
+	.profileBox {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		.title {
+			margin-top: 30rpx;
+			margin-left: 30rpx;
+			font-size: 50rpx;
+			width: 100%;
+			font-weight: bold;
+			height: 20%;
+		}
+
+		.boxItem {
+			display: flex;
+			flex-direction: row;
+			justify-content: left;
+
+			.item {
+				margin-left: 30rpx;
+				width: 200rpx;
+				height: 80%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				box-sizing: border-box;
+				text-align: center;
+				margin-top: 80rpx;
+
+				image {
+					margin-left: 55rpx;
+					width: 80rpx;
+					height: 80rpx;
+				}
+			}
+		}
+	}
+}
+
+.profileCart {
+	background-color: #ffff !important;
+	width: 100%;
+	height: 350rpx;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	border-radius: 5%;
+	align-items: center;
+
+	.profileRoot {
+		width: 25%;
+		height: 150rpx;
+		margin-left: 20rpx;
+
+
+		image {
+			border-radius: 50%;
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	.profileMessage {
+		margin-right: 20rpx;
+		margin-left: 20rpx;
+		width: 50%;
+	}
+
+	.profileBtn {
+		text-align: center;
+		line-height: 80rpx;
+
+		width: 25%;
+		height: 80rpx;
+		color: #efefef;
+		background-color: #1AAD19;
+		margin-right: 20rpx;
+		border-radius: 40rpx;
+	}
+}
+
+.profileService {
+	width: 100%;
+	height: 400rpx;
+
+	image {
+		width: 100%;
+		height: 100%;
+	}
+}
