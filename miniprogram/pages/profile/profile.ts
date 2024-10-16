@@ -1,66 +1,58 @@
-// pages/profile/profile.ts
+import { requestFunction } from "../../utils/request"
+import type { ResponseData } from "../../../typings/response/responseData"
+import type { User } from "../../../typings/response/user/user"
+
 Page({
+	data: {
+		userObject: {} as User,
+		userInfo: {},
+	},
+	login() {
+		wx.getUserProfile({
+			desc: "必须授权才能使用",
+			success: (result) => {
+				requestFunction<ResponseData<User>>({
+					url: "http://localhost:8080/user/login/" + result.userInfo.nickName,
+					method: "GET"
+				}).then(resultUser => {
+					this.setData({
+						userInfo: result.userInfo,
+						userObject: resultUser.data
+					})
+					wx.setStorageSync("userInfo", {
+						...(result.userInfo)
+					})
+					wx.setStorageSync("userObject", {
+						...(resultUser.data)
+					})
+				}).catch(() => {
+					wx.showModal({
+						title: "认证失败,请稍后重试"
+					})
+				})
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
+			},
+			fail: function () {
+				wx.showModal({
+					title: "认证失败,请稍后重试"
+				})
+			}
+		})
+	},
+	logout() {
+		this.setData({
+			userInfo: {},
+			userObject: {} as User
+		})
+		wx.removeStorageSync("userInfo")
+		wx.removeStorageSync("userObject")
+	},
+	onLoad() {
+		const userInfo = wx.getStorageSync("userInfo")
+		const userObject = wx.getStorageSync("userObject")
+		this.setData({
+			userInfo: userInfo ? userInfo : {},
+			userObject: userObject ? userObject : {},
+		})
+	}
 })

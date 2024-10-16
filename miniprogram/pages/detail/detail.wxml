@@ -39,11 +39,11 @@
 		<image src="../../assets/details/home.png" />
 		<view>首页</view>
 	</view>
-	<view class="util-other">
-		<image src="../../assets/details/collect.png" />
+	<view class="util-other" bind:tap="addCollect">
+		<image src="{{productCollectStatus?'../../assets/details/collect-active.png':'../../assets/details/collect.png'}}" />
 		<view>收藏</view>
 	</view>
-	<view class="util-other">
+	<view class="util-other" bind:tap="navigateService">
 		<image src="../../assets/details/customerService.png" />
 		<view>客服</view>
 	</view>

@@ -4,14 +4,15 @@
 </view>
 <view class="profileCart">
 	<view class='profileRoot'>
-		<image src="../../assets/profile/root.png" mode="aspectFill" />
+		<image src="{{userInfo.avatarUrl?userInfo.avatarUrl:'../../assets/profile/root.png'}}" mode="aspectFill" />
 	</view>
 	<view class="profileMessage">
-		<view>花痴同城鲜花店订花预花送花-用户</view>
-		<view style="font-size:25rpx;margin-top: 20rpx;">为了给您更好的服务请您先授权登录</view>
+		<view>{{ userInfo.nickName?userInfo.nickName:"花痴同城鲜花店订花预花送花-用户"}}</view>
+		<view style="font-size:25rpx;margin-top: 20rpx;" wx:if="{{userInfo.nickName?false:true}}">为了给您更好的服务请您先授权登录</view>
 	</view>
 	<view class="profileBtn">
-		<view>登录/注册</view>
+		<view wx:if="{{userInfo.nickName?false:true}}" bind:tap="login">登录/注册</view>
+		<view wx:if="{{userInfo.nickName?true:false}}" bind:tap="logout">退出登录</view>
 	</view>
 </view>
 
