@@ -12,8 +12,8 @@
       "list": [
         {
           "name": "pages/cate/cate",
-          "pathName": "pages/index/index",
-          "query": "",
+          "pathName": "pages/address/address",
+          "query": "userId=ecea3d52-1602-4fe6-9a68-03e9933ac4d0",
           "launchMode": "default",
           "scene": null
         }

@@ -7,6 +7,16 @@ Page({
 		userObject: {} as User,
 		userInfo: {},
 	},
+	navigateToAddress: function () {
+		wx.navigateTo({
+			url: "/pages/address/address?userId=" + this.data.userObject.id
+		})
+	},
+	navigateToCollect: function () {
+		wx.navigateTo({
+			url: "/pages/collect/collect?userId=" + this.data.userObject.id
+		})
+	},
 	login() {
 		wx.getUserProfile({
 			desc: "必须授权才能使用",

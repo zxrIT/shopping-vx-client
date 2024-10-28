@@ -5,7 +5,10 @@
     "pages/cate/cate",
     "pages/cart/cart",
     "pages/profile/profile",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/address/address",
+    "pages/collect/collect",
+    "pages/addressCU/addressCU"
   ],
   "window": {
     "navigationBarTitleText": "小张花坊",

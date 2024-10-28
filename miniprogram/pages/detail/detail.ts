@@ -12,41 +12,52 @@ Page({
 		}
 	},
 	addCollect: function () {
-		if(!this.data.productCollectStatus){
+		if (!this.data.productCollectStatus) {
 			if (Object.keys(this.data.user).length === 0) {
-			wx.showModal({
-				title: "请先登录再进行收藏",
-				success: (result) => {
-					if (result.confirm) {
-						wx.switchTab({
-							url: "/pages/profile/profile"
-						})
+				wx.showModal({
+					title: "请先登录再进行收藏",
+					success: (result) => {
+						if (result.confirm) {
+							wx.switchTab({
+								url: "/pages/profile/profile"
+							})
+						}
 					}
-				}
-			})
-		}
-		requestFunction<ResponseData<string>>({
-			url: "http://localhost:8080/collect/add/" + this.data.user.id + "/" + this.data.imagesId,
-			method: "GET"
-		}).then(result => {
-			if (result.code === 200) {
-				wx.showToast({
-					title: result.data,
-					icon: 'success'
-				})
-				this.setData({
-					addCollectStatus: !this.data.addCollectStatus
-				})
-			} else {
-				wx.showToast({
-					title: result.data,
-					icon: 'error'
 				})
 			}
-		})
-		return;
+			requestFunction<ResponseData<string>>({
+				url: "http://localhost:8080/collect/add/" + this.data.user.id + "/" + this.data.imagesId,
+				method: "GET"
+			}).then(result => {
+				if (result.code === 200) {
+					wx.showToast({
+						title: result.data,
+						icon: 'success'
+					})
+					this.setData({
+						addCollectStatus: !this.data.addCollectStatus
+					})
+				} else {
+					wx.showToast({
+						title: result.data,
+						icon: 'error'
+					})
+				}
+			})
+			return;
 		}
-		console.log("取消收藏")
+		requestFunction<ResponseData<string>>({
+			url: "http://localhost:8080/collect/delete/" + this.data.user.id + "/" + this.data.imagesId,
+			method: "GET"
+		}).then(result => {
+			wx.showToast({
+				title: result.data,
+				icon: "success"
+			})
+			this.setData({
+				productCollectStatus: false
+			})
+		})
 	},
 	navigate: function navigate() {
 		wx.switchTab({
@@ -83,10 +94,10 @@ Page({
 						+ userObejct.id,
 					method: "GET"
 				}).then(result => {
-					result.data.forEach((value: number)=>{
-						if(String(value)===options.id){
+					result.data.forEach((value: number) => {
+						if (String(value) === options.id) {
 							this.setData({
-								productCollectStatus:true
+								productCollectStatus: true
 							})
 						}
 						return;

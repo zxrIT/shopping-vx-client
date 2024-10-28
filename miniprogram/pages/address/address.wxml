@@ -1,0 +1,48 @@
+<view class="addressTitle" wx:if="{{!loginStatus}}">
+	<view>我的收货地址</view>
+</view>
+<view class="addressContent" wx:if="{{!loginStatus}}">
+	<view class="addressItem" wx:for="{{addressList}}" wx:key="id" bind:touchstart="touchStart" bind:touchend="touchEnd" style="{{item.isAction?'transform: translateX(0rpx);':''}}" mark:index="{{index}}">
+		<view class="addressCont">
+			<view class="addressItemTitle">
+				<view class="addressType">
+					<view class="addressTypeTitle">{{item.topic}}</view>
+					<view class="addressTypeIcon" bind:tap="navigateToAddressCUUpdate" mark:addressId="{{item.addressId}}">
+						<image src="../../assets/address/update.png" mode="aspectFill" />
+					</view>
+				</view>
+				<view class="addressItemContext">{{item.addressContent}}</view>
+			</view>
+			<view class="addressItemUser">
+				<text decode="{{true}}">{{item.username}}&nbsp;&nbsp;{{item.sex}}&nbsp;&nbsp;{{item.mobile}}</text>
+			</view>
+		</view>
+		<view class="itemBtns">
+			<view class="set" bind:tap="setAcquiesce" mark:addressObject="{{item}}">
+				<view class="Icon">
+					<image wx:if="{{item.addressId!==acquiesceAddressId}}" src="../../assets/address/acquiesce.png" />
+					<image wx:if="{{item.addressId===acquiesceAddressId}}" src="../../assets/address/acquiesce-action.png" />
+				</view>
+				<view class="Title">设为默认</view>
+			</view>
+			<view class="set" bind:tap="deleteAddress" mark:addressId="{{item.addressId}}">
+				<view class="Icon">
+					<image src="../../assets/address/delete.png" />
+				</view>
+				<view class="Title" style="margin-top: 20rpx;">删除</view>
+			</view>
+		</view>
+	</view>
+	<view wx:if="{{addressListLength>=3}}" style="width: 100%;height: 200rpx;"></view>
+</view>
+<view wx:if="{{loginStatus}}" class="loginBox" bind:tap="login">
+	<view class="loginImage">
+		<image src="../../assets/address/login.png" mode="widthFix" />
+	</view>
+	<view class="loginText">
+		<text>您还没有登录，请先登录</text>
+	</view>
+</view>
+<view class="addAddress" wx:if="{{!loginStatus}}" bind:tap="navigateToAddressCU">
+	新增收货地址
+</view>

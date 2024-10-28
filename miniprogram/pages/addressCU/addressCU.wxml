@@ -1,0 +1,68 @@
+<view class="addressBox">
+	<view class="username">
+		<view class="usernameTitle">
+			<text>联系人</text>
+		</view>
+		<view class="usernameInput">
+			<input value="{{username}}" placeholder="请输入联系人" bindinput="changeUsername" />
+		</view>
+	</view>
+	<view class="sex">
+		<view class="sexTitle">
+			<text>性别</text>
+		</view>
+		<view class="sexInput">
+			<radio-group bindchange="handleSex">
+				<radio checked="{{true}}" color="#f3514f" value="先生" />先生
+				<radio value="女士" color="#f3514f" style="margin-left: 50rpx;" />女士
+			</radio-group>
+		</view>
+	</view>
+	<view class="mobile">
+		<view class="mobileTitle">
+			<text>手机号</text>
+		</view>
+		<view class="mobileInput">
+			<input value="{{mobile}}" placeholder="请输入手机号" bindinput="changeMobile" />
+		</view>
+		<view class="mobileBtn">
+			<view bind:tap="getUserNumber">
+				自动获取
+			</view>
+		</view>
+	</view>
+	<view class="addressContent">
+		<view class="addressTitle">
+			<text>收货地址</text>
+		</view>
+		<view class="addressInput" bind:tap="getAddress">
+			{{address.length===0?"点击选择":address}}
+			<image src="../../assets/address/right.png" mode="aspectFill" />
+		</view>
+	</view>
+	<view class="addressContext">
+		<view class="addressContextTitle">
+			<text>门牌号</text>
+		</view>
+		<view class="addressContextInput">
+			<input value="{{houseNumber}}" placeholder="例:A1栋1单元101室" bindinput="getHouseNumber" />
+		</view>
+	</view>
+	<view class="addressTopic">
+		<view class="addressTopicTitle">
+			<text>地址标签</text>
+		</view>
+		<view class="addressTopicContext">
+			<view bind:tap="changeAddressTopic" mark:id="1" style="{{addressTopic==='1'?addressTopicChoiceStyle:''}}">家</view>
+			<view bind:tap="changeAddressTopic" mark:id="2" style="{{addressTopic==='2'?addressTopicChoiceStyle:''}}">公司</view>
+			<view bind:tap="changeAddressTopic" mark:id="3" style="{{addressTopic==='3'?addressTopicChoiceStyle:''}}">学校</view>
+		</view>
+	</view>
+</view>
+<view wx:if="{{typeId!=='update'}}" class="submit" bind:tap="createAddress">
+	添加
+</view>
+<view wx:if="{{typeId==='update'}}" class="submit"
+bind:tap="updateAddress">
+	修改
+</view>
