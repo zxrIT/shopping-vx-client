@@ -1,2 +1,28 @@
-<!--pages/collect/collect.wxml-->
-<text>pages/collect/collect.wxml</text>
+<view class="collectBox" wx:if="{{loginStatus}}">
+	<view class="collectItem" wx:for="{{collectList}}" wx:key="id">
+		<view class="collectItemImage">
+			<image src="{{'http://localhost:8080/static/product/'+item.productImageChoice}}" />
+		</view>
+		<view class="collectItemContent">
+			<view class="collectItemContentDescription">
+				{{item.productName}}花语：({{item.description}})
+			</view>
+			<view class="collectItemContentPrice">
+				<view class="price">
+					¥{{item.price}}
+				</view>
+				<view class="collectItemContentIcon">
+					<image src="../../assets/collect/shopping.png" />
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view wx:if="{{!loginStatus}}" class="loginBox" bind:tap="login">
+	<view class="loginImage">
+		<image src="../../assets/address/login.png" mode="widthFix" />
+	</view>
+	<view class="loginText">
+		<text>您还没有登录，请先登录</text>
+	</view>
+</view>

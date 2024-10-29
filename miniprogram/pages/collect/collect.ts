@@ -1,66 +1,37 @@
-// pages/collect/collect.ts
+import { ProductData } from "../../../typings/response/product/productData"
+import { ResponseData } from "../../../typings/response/responseData"
+import { User } from "../../../typings/response/user/user"
+import { requestFunction } from "../../utils/request"
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
+	login(){
+		wx.switchTab({
+			url: "/pages/profile/profile"
+		})
+	},
+	data: {
+		userObject: {} as User,
+		loginStatus: false as boolean,
+		collectList: [] as Array<ProductData>
+	},
+	onShow() {
+		const userObejct: User = wx.getStorageSync("userObject")
+		this.setData({
+			user: userObejct ? userObejct : {},
+		})
+		if (Object.keys(userObejct).length > 0) {
+			this.setData({
+				loginStatus: true
+			})
+			requestFunction<ResponseData<Array<ProductData>>>({
+				url: "http://localhost:8080/collect/getAllCollect/" + userObejct.id,
+				method: "GET"
+			}).then(result => {
+				this.setData({
+					collectList: result.data
+				})
+			})
+			return;
+		}
+	}
 })
