@@ -1,1 +1,66 @@
-<view class="box">小张花坊</view>
+<view class="cartBox" wx:if="{{loginStatus===true}}">
+	<view class="cartAddress" wx:if="{{addressStatus===true}}">
+		<view class="cartContent">
+			<view class="cartAddressProson">
+				收获人：{{addressObject.username}}{{"("+addressObject.sex+")"}}
+			</view>
+			<view class="cartAddressContent" style="margin-top: 5rpx;">
+				地址：{{addressObject.addressContent}}
+			</view>
+		</view>
+		<view class="cartAddressBtn" bind:tap="navigateToChoiceAddress">
+			更换地址
+		</view>
+	</view>
+	<view class="cartButton" wx:if="{{addressStatus===false}}">
+		<button type="default" style="color: #f3514f;" bind:tap="navigateToChoiceAddress">选择收货地址</button>
+	</view>
+</view>
+<view class="cartContent" wx:if="{{loginStatus===true}}">
+	<view class="cartItem" wx:for="{{productObjectArray}}" wx:key="id">
+		<view class="cartChoice">
+			<checkbox-group bindchange="changeProductCheckedStatus" mark:id="{{item.id}}">
+				<checkbox checked="{{item.checked}}"></checkbox>
+			</checkbox-group>
+		</view>
+		<view class="cartContext">
+			<view class="cartImage">
+				<image src="{{'http://localhost:8080/static/product/'+item.productImageChoice}}" bind:tap="navigateToDetails" mark:id="{{item.id}}" mode="aspectFill" />
+			</view>
+			<view class="cartPrice">
+				<view class="cartPriceTitle" bind:tap="navigateToDetails" mark:id="{{item.id}}">
+					{{item.productName}}
+				</view>
+				<view class="cartPriceContext">
+					<view>¥{{item.price}}</view>
+					<view class="cartPriceContextCount">
+						<view bind:tap="operation" mark:id="{{item.id}}" mark:type="decement">-</view>
+						<view class="number">{{item.count}}</view>
+						<view bind:tap="operation" mark:id="{{item.id}}" mark:type="increment">+</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="cartPay">
+	<view class="cartPayCheckbox">
+		<checkbox-group bindchange="changeCheckedAll" mark:status="{{allChecked}}">
+			<checkbox checked="{{allChecked}}"><text decode="true">&nbsp;&nbsp;全选</text></checkbox>
+		</checkbox-group>
+	</view>
+	<view class="cartPayCount">
+		合计<text decode="true" style="color: #f3514f;font-weight: bold;font-size: 35rpx;">&nbsp;&nbsp;¥{{priceCount}}</text>
+	</view>
+	<view class="cartPayBtn">
+		结算({{prodectNumber}})
+	</view>
+</view>
+<view wx:if="{{loginStatus===false}}" class="loginBox" bind:tap="login">
+	<view class="loginImage">
+		<image src="../../assets/address/login.png" mode="widthFix" />
+	</view>
+	<view class="loginText">
+		<text>您还没有登录，请先登录</text>
+	</view>
+</view>

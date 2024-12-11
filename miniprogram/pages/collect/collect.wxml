@@ -11,7 +11,7 @@
 				<view class="price">
 					¥{{item.price}}
 				</view>
-				<view class="collectItemContentIcon">
+				<view class="collectItemContentIcon" bind:tap="addShopping" mark:id="{{item.id}}">
 					<image src="../../assets/collect/shopping.png" />
 				</view>
 			</view>

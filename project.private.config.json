@@ -12,7 +12,7 @@
       "list": [
         {
           "name": "pages/cate/cate",
-          "pathName": "pages/collect/collect",
+          "pathName": "pages/index/index",
           "query": "userId=ecea3d52-1602-4fe6-9a68-03e9933ac4d0",
           "launchMode": "default",
           "scene": null

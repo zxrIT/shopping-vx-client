@@ -3,6 +3,11 @@ import type { ResponseData } from "../../../typings/response/responseData"
 import type { ProductData } from "../../../typings/response/product/productData"
 
 Page({
+	navigateToDetail(event: any) {
+		wx.navigateTo({
+			url: "/pages/detail/detail?id=" + event.mark.id
+		})
+	},
 	data: {
 		baseUrl: "" as string,
 		hotProductData: [] as ProductData[],

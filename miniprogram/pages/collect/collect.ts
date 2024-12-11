@@ -4,7 +4,12 @@ import { User } from "../../../typings/response/user/user"
 import { requestFunction } from "../../utils/request"
 
 Page({
-	login(){
+	addShopping(event: any) {
+		wx.switchTab({
+			url: "/pages/cart/cart?id=" + event.mark.id
+		})
+	},
+	login() {
 		wx.switchTab({
 			url: "/pages/profile/profile"
 		})
