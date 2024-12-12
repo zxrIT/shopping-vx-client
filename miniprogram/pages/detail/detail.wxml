@@ -47,7 +47,7 @@
 		<image src="../../assets/details/customerService.png" />
 		<view>客服</view>
 	</view>
-	<view class="util-cart">
+	<view class="util-cart" bind:tap="addShoppingCart">
 		<view>加入购物袋</view>
 	</view>
 	<view class="util-shop">

@@ -162,6 +162,92 @@ page {
 	}
 }
 
+.popup-box {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: left;
+	height: 150rpx;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 100%;
+	padding: 20rpx;
+	background-color: #ffffff;
+	transition: bottom 0.5s ease;
+
+	.tarnsformImage {
+		flex: 1;
+		border-radius: 50%;
+
+		image {
+			width: 150rpx;
+			height: 150rpx;
+			border-radius: 50%;
+		}
+	}
+
+	.tarnsformContext {
+		flex: 5;
+
+		.deleteContext {
+			color: #f3514f;
+			font-size: 40rpx;
+			font-weight: bold;
+			margin-top: 10rpx;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+
+			.deleteContextName {
+				width: 300rpx;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				margin-left: 50rpx;
+			}
+
+			.deleteContextCount {
+				margin-right: 50rpx;
+			}
+		}
+
+		.deleteChoice {
+			margin-top: 20rpx;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			text-align: center;
+			margin-left: 70rpx;
+			color: #fff;
+
+			.delete {
+				width: 200rpx;
+				height: 70rpx;
+				line-height: 70rpx;
+				background-image: linear-gradient(90deg, #d45452, #d61f1c);
+				border-bottom-left-radius: 50rpx;
+				border-top-left-radius: 50rpx;
+			}
+
+			.cancel {
+				width: 200rpx;
+				height: 70rpx;
+				line-height: 70rpx;
+				background-image: linear-gradient(90deg, #aa1e1c, #9b1311);
+				border-bottom-right-radius: 50rpx;
+				border-top-right-radius: 50rpx;
+			}
+		}
+	}
+
+}
+
+.slide-up {
+	bottom: 0;
+	transition: bottom 0.5s ease;
+}
+
 .loginBox {
 	display: flex;
 	flex-direction: column;

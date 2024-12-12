@@ -5,6 +5,26 @@ import type { ResponseData } from "../../../typings/response/responseData"
 import type { ProductData } from "../../../typings/response/product/productData"
 
 Page({
+	addShoppingCart() {
+		console.log(this.data.imagesId);
+		console.log(this.data.user.id);
+		requestFunction<ResponseData<string>>({
+			url: "http://localhost:8080/shoppingCart/addShoppingCartProduct/" + this.data.user.id + "/" + this.data.imagesId,
+			method: "GET"
+		}).then(result => {
+			if (result.code === 200) {
+				wx.showToast({
+					icon: "success",
+					title: result.data
+				})
+			} else if (result.code === 500) {
+				wx.showToast({
+					icon: "error",
+					title: result.data
+				})
+			}
+		})
+	},
 	onShareAppMessage: function () {
 		return {
 			title: "花坊" + this.data.productDetail.productName,

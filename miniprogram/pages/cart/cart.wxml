@@ -1,4 +1,4 @@
-<view class="cartBox" wx:if="{{loginStatus===true}}">
+<view class="cartBox" wx:if="{{loginStatus===true}}" style="opacity: {{popupClassStatus?0.3:1}}">
 	<view class="cartAddress" wx:if="{{addressStatus===true}}">
 		<view class="cartContent">
 			<view class="cartAddressProson">
@@ -16,8 +16,8 @@
 		<button type="default" style="color: #f3514f;" bind:tap="navigateToChoiceAddress">选择收货地址</button>
 	</view>
 </view>
-<view class="cartContent" wx:if="{{loginStatus===true}}">
-	<view class="cartItem" wx:for="{{productObjectArray}}" wx:key="id">
+<view class="cartContent" wx:if="{{loginStatus===true}}" style="opacity: {{popupClassStatus?0.3:1}}">
+	<view class="cartItem" wx:for="{{productObjectArray}}" wx:key="id" bind:longtap="deleteShoppingCart" mark:id="{{item.id}}">
 		<view class="cartChoice">
 			<checkbox-group bindchange="changeProductCheckedStatus" mark:id="{{item.id}}">
 				<checkbox checked="{{item.checked}}"></checkbox>
@@ -28,7 +28,7 @@
 				<image src="{{'http://localhost:8080/static/product/'+item.productImageChoice}}" bind:tap="navigateToDetails" mark:id="{{item.id}}" mode="aspectFill" />
 			</view>
 			<view class="cartPrice">
-				<view class="cartPriceTitle" bind:tap="navigateToDetails" mark:id="{{item.id}}">
+				<view class="cartPriceTitle">
 					{{item.productName}}
 				</view>
 				<view class="cartPriceContext">
@@ -54,6 +54,21 @@
 	</view>
 	<view class="cartPayBtn">
 		结算({{prodectNumber}})
+	</view>
+</view>
+<view class="popup-box {{popupClass}}">
+	<view class="tarnsformImage">
+		<image src="{{'http://localhost:8080/static/product/'+tarnsformProductObject.productImageChoice}}" mode="aspectFill" />
+	</view>
+	<view class="tarnsformContext">
+		<view class="deleteContext">
+			<view class="deleteContextName">{{tarnsformProductObject.productName}}</view>
+			<view class="deleteContextCount"><text decode="true">数量:&nbsp;&nbsp;</text>{{tarnsformProductObject.count}}</view>
+		</view>
+		<view class="deleteChoice">
+			<view class="delete" bind:tap="delete" mark:id="{{tarnsformProductObject.id}}">删除</view>
+			<view bind:tap="hidePopup" class="cancel">取消</view>
+		</view>
 	</view>
 </view>
 <view wx:if="{{loginStatus===false}}" class="loginBox" bind:tap="login">

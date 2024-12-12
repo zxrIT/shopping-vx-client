@@ -4,9 +4,27 @@ import { User } from "../../../typings/response/user/user"
 import { requestFunction } from "../../utils/request"
 
 Page({
-	addShopping(event: any) {
-		wx.switchTab({
-			url: "/pages/cart/cart?id=" + event.mark.id
+	addShoppingCart(event: any) {
+		requestFunction<ResponseData<string>>({
+			url: "http://localhost:8080/shoppingCart/addShoppingCartProduct/" + this.data.userObject.id + "/" + event.mark.id,
+			method: "GET"
+		}).then(result => {
+			if (result.code === 200) {
+				wx.showToast({
+					icon: "success",
+					title: result.data
+				})
+			} else if (result.code === 500) {
+				wx.showToast({
+					icon: "error",
+					title: result.data
+				})
+			}
+		})
+	},
+	navigateToDetail(event: any) {
+		wx.navigateTo({
+			url: "/pages/detail/detail?id=" + event.mark.id
 		})
 	},
 	login() {
@@ -22,7 +40,7 @@ Page({
 	onShow() {
 		const userObejct: User = wx.getStorageSync("userObject")
 		this.setData({
-			user: userObejct ? userObejct : {},
+			userObject: userObejct ? userObejct : {} as User,
 		})
 		if (Object.keys(userObejct).length > 0) {
 			this.setData({

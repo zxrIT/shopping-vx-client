@@ -11,6 +11,41 @@ Page({
 			url: "/pages/profile/profile"
 		})
 	},
+	deleteShoppingCart(event: any) {
+		this.showPopup()
+		const tempObject: ProductDataCount[] = this.data.productObjectArray.filter((value: ProductDataCount) => {
+			return value.id === event.mark.id
+		})
+		this.setData({
+			tarnsformProductObject: tempObject[0]
+		})
+	},
+	delete(event: any) {
+		wx.showModal({
+			title: "确认要删除吗",
+			success: (result) => {
+				if (result.confirm) {
+					requestFunction<ResponseData<string>>({
+						url: "http://localhost:8080/shoppingCart/deleteShoppingCartProduct/" + this.data.user.id + "/" + event.mark.id,
+						method: "GET"
+					}).then(result => {
+						if (result.code === 200) {
+							this.onShow()
+							this.setData({
+								popupClass: '',
+								popupClassStatus: false
+							})
+							wx.showToast({
+								title: "删除成功",
+								icon: "success",
+								duration: 3000,
+							})
+						}
+					})
+				}
+			}
+		})
+	},
 	operation(event: any) {
 		switch (event.mark.type) {
 			case "increment":
@@ -48,13 +83,13 @@ Page({
 			url: "/pages/detail/detail?id=" + event.mark.id
 		})
 	},
-	changeCheckedAll(event:any){
+	changeCheckedAll(event: any) {
 		this.setData({
-			productObjectArray:this.data.productObjectArray.map((value: ProductDataCount)=>{
-				value.checked=!event.mark.status
+			productObjectArray: this.data.productObjectArray.map((value: ProductDataCount) => {
+				value.checked = !event.mark.status
 				return value
 			}),
-			allChecked:!event.mark.status,
+			allChecked: !event.mark.status,
 			productObjectCountChangeStatus: !this.data.productObjectCountChangeStatus
 		})
 	},
@@ -69,7 +104,23 @@ Page({
 			productObjectCountChangeStatus: !this.data.productObjectCountChangeStatus
 		})
 	},
+	showPopup: function () {
+		this.setData({
+			popupClass: 'slide-up',
+			popupClassStatus: true
+		});
+	},
+	hidePopup: function () {
+		this.setData({
+			popupClass: '',
+			popupClassStatus: false
+		});
+	},
 	data: {
+		popupClass: "",
+		user: {} as User,
+		popupClassStatus: false as boolean,
+		tarnsformProductObject: {} as ProductDataCount,
 		priceCount: 0 as number,
 		prodectNumber: 0 as number,
 		productObjectCountChangeStatus: false as boolean,
@@ -85,6 +136,9 @@ Page({
 	onShow() {
 		const addressId: number = wx.getStorageSync("addressAcquiesce")
 		const userObject: User = wx.getStorageSync("userObject")
+		this.setData({
+			user: userObject
+		})
 		if (addressId) {
 			this.setData({
 				addressStatus: true
@@ -141,9 +195,9 @@ Page({
 				priceCount: this.data.productObjectArray.reduce((pre: number, curr: ProductDataCount) => {
 					return curr.checked ? pre += (curr.price) * (curr.count) : pre
 				}, 0),
-				allChecked:(this.data.productObjectArray.reduce((_,curr: ProductDataCount)=>{
-					return !curr.checked?0:1
-				},0))===1
+				allChecked: (this.data.productObjectArray.reduce((pre: number, curr: ProductDataCount) => {
+					return !curr.checked ? pre + 1 : pre
+				}, 0)) === 0
 			})
 		})
 		this.setData({

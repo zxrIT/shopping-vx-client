@@ -1,7 +1,8 @@
 <view class="collectBox" wx:if="{{loginStatus}}">
 	<view class="collectItem" wx:for="{{collectList}}" wx:key="id">
-		<view class="collectItemImage">
-			<image src="{{'http://localhost:8080/static/product/'+item.productImageChoice}}" />
+		<view class="collectItemImage" bind:tap="navigateToDetail"
+		mark:id="{{item.id}}">
+			<image src="{{'http://localhost:8080/static/product/'+item.productImageChoice}}"/>
 		</view>
 		<view class="collectItemContent">
 			<view class="collectItemContentDescription">
@@ -11,7 +12,7 @@
 				<view class="price">
 					¥{{item.price}}
 				</view>
-				<view class="collectItemContentIcon" bind:tap="addShopping" mark:id="{{item.id}}">
+				<view class="collectItemContentIcon" bind:tap="addShoppingCart" mark:id="{{item.id}}">
 					<image src="../../assets/collect/shopping.png" />
 				</view>
 			</view>
