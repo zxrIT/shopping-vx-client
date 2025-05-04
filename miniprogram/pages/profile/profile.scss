@@ -28,41 +28,43 @@ page {
 	width: 100%;
 	height: 350rpx;
 	border-radius: 5%;
+	padding: 20rpx 0;
 
 	.profileBox {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
+		height: 100%;
 
 		.title {
-			margin-top: 30rpx;
-			margin-left: 30rpx;
-			font-size: 50rpx;
-			width: 100%;
+			padding: 20rpx 30rpx;
+			font-size: 36rpx;
 			font-weight: bold;
-			height: 20%;
 		}
 
 		.boxItem {
 			display: flex;
 			flex-direction: row;
-			justify-content: left;
+			justify-content: space-around;
+			padding: 20rpx 10rpx;
+			flex: 1;
 
 			.item {
-				margin-left: 30rpx;
-				width: 200rpx;
-				height: 80%;
+				flex: 1;
 				display: flex;
 				flex-direction: column;
+				align-items: center;
 				justify-content: center;
-				box-sizing: border-box;
-				text-align: center;
-				margin-top: 80rpx;
+				padding: 10rpx;
 
 				image {
-					margin-left: 55rpx;
-					width: 80rpx;
-					height: 80rpx;
+					width: 60rpx;
+					height: 60rpx;
+					margin-bottom: 16rpx;
+				}
+
+				view {
+					font-size: 26rpx;
+					color: #333;
 				}
 			}
 		}
@@ -120,5 +122,32 @@ page {
 	image {
 		width: 100%;
 		height: 100%;
+	}
+}
+
+.floating-btn {
+	position: fixed;
+	right: 30rpx;
+	bottom: 120rpx;
+	background-color: #f3514f;
+	width: 120rpx;
+	height: 120rpx;
+	border-radius: 60rpx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 4rpx 16rpx rgba(243, 81, 79, 0.3);
+	z-index: 100;
+
+	image {
+		width: 50rpx;
+		height: 50rpx;
+		margin-bottom: 6rpx;
+	}
+
+	text {
+		font-size: 22rpx;
+		color: #fff;
 	}
 }

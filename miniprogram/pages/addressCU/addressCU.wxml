@@ -13,8 +13,8 @@
 		</view>
 		<view class="sexInput">
 			<radio-group bindchange="handleSex">
-				<radio checked="{{true}}" color="#f3514f" value="先生" />先生
-				<radio value="女士" color="#f3514f" style="margin-left: 50rpx;" />女士
+				<radio checked="{{sex === '先生'}}" color="#f3514f" value="先生" />先生
+				<radio checked="{{sex === '女士'}}" value="女士" color="#f3514f" style="margin-left: 50rpx;" />女士
 			</radio-group>
 		</view>
 	</view>
@@ -36,8 +36,8 @@
 			<text>收货地址</text>
 		</view>
 		<view class="addressInput" bind:tap="getAddress">
-			{{address.length===0?"点击选择":address}}
-			<image src="../../assets/address/right.png" mode="aspectFill" />
+			<text>{{address.length===0?"点击选择":address}}</text>
+			<image src="/assets/address/right.png" mode="aspectFill" />
 		</view>
 	</view>
 	<view class="addressContext">
@@ -53,9 +53,9 @@
 			<text>地址标签</text>
 		</view>
 		<view class="addressTopicContext">
-			<view bind:tap="changeAddressTopic" mark:id="1" style="{{addressTopic==='1'?addressTopicChoiceStyle:''}}">家</view>
-			<view bind:tap="changeAddressTopic" mark:id="2" style="{{addressTopic==='2'?addressTopicChoiceStyle:''}}">公司</view>
-			<view bind:tap="changeAddressTopic" mark:id="3" style="{{addressTopic==='3'?addressTopicChoiceStyle:''}}">学校</view>
+			<view class="{{addressTopic==='1'?'active':''}}" bind:tap="changeAddressTopic" mark:id="1">家</view>
+			<view class="{{addressTopic==='2'?'active':''}}" bind:tap="changeAddressTopic" mark:id="2">公司</view>
+			<view class="{{addressTopic==='3'?'active':''}}" bind:tap="changeAddressTopic" mark:id="3">学校</view>
 		</view>
 	</view>
 </view>

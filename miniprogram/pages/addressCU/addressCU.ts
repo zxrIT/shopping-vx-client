@@ -1,7 +1,22 @@
 import { requestFunction } from "../../utils/request"
-import { ADDRESS_TOPIC } from "../../object/address/address"
+import { ADDRESS_TOPIC, AddressTopicValue } from "../../object/address/address"
 import type { ResponseData } from "../../../typings/response/responseData"
-import { Address } from "../../../typings/response/address/address"
+import type { Address } from "../../../typings/response/address/address"
+
+interface AddressOptions {
+	userId: string;
+	typeId: string;
+	addressId?: string;
+}
+
+interface AddressEvent extends WechatMiniprogram.BaseEvent {
+	mark: {
+		id: string;
+	};
+	detail: {
+		value: string;
+	};
+}
 
 Page({
 	data: {
@@ -10,25 +25,25 @@ Page({
 		userId: "" as string,
 		buttonTitle: "" as string,
 		addressTopic: "1" as string,
-		topic: "家" as string,
+		topic: "家" as AddressTopicValue,
 		addressTopicChoiceStyle: "color:#f3514f;border:1px solid #f3514f;",
 		username: "" as string,
-		sex: "" as string,
+		sex: "先生" as string,
 		mobile: "" as string,
 		address: "" as string,
 		houseNumber: "" as string
 	},
-	changeUsername(event: any) {
+	changeUsername(event: AddressEvent) {
 		this.setData({
 			username: event.detail.value
 		})
 	},
-	handleSex(event: any) {
+	handleSex(event: AddressEvent) {
 		this.setData({
 			sex: event.detail.value
 		})
 	},
-	changeMobile(event: any) {
+	changeMobile(event: AddressEvent) {
 		this.setData({
 			mobile: event.detail.value
 		})
@@ -42,12 +57,12 @@ Page({
 			}
 		})
 	},
-	getHouseNumber(event: any) {
+	getHouseNumber(event: AddressEvent) {
 		this.setData({
 			houseNumber: event.detail.value
 		})
 	},
-	getUserNumber(event: any) {
+	getUserNumber() {
 		wx.getUserProfile({
 			desc: "获取手机号",
 			success: (result) => {
@@ -55,16 +70,13 @@ Page({
 			}
 		})
 	},
-	changeAddressTopic(event: any) {
-		for (let [key, value] of Object.entries(ADDRESS_TOPIC)) {
-			if (key === event.mark.id) {
-				this.setData({
-					topic: value
-				})
-			}
-		}
+	changeAddressTopic(event: AddressEvent) {
+		const id = event.mark.id;
+		const value = ADDRESS_TOPIC[id as keyof typeof ADDRESS_TOPIC];
+		
 		this.setData({
-			addressTopic: event.mark.id,
+			addressTopic: id,
+			topic: value
 		})
 	},
 	updateAddress() {
@@ -159,35 +171,62 @@ Page({
 			icon: "error"
 		})
 	},
-	onLoad(options: any) {
-		if (options.typeId === "update") {
+	onLoad(options: Record<string, string | undefined>) {
+		const addressOptions: AddressOptions = {
+			userId: options.userId as string,
+			typeId: options.typeId as string,
+			addressId: options.addressId
+		};
+
+		this.setData({
+			userId: addressOptions.userId,
+			typeId: addressOptions.typeId,
+			addressId: parseInt(addressOptions.addressId || '0')
+		})
+
+		if (addressOptions.typeId === "update" && addressOptions.addressId) {
+			wx.showLoading({
+				title: '加载中'
+			})
 			requestFunction<ResponseData<Address>>({
-				url: "http://localhost:8080/address/findAddress/" + options.userId + "/" + options.addressId,
+				url: "http://localhost:8080/address/findAddress/" + addressOptions.userId + "/" + addressOptions.addressId,
 				method: "GET"
 			}).then(result => {
-				const regex = /\([^)]*\)$/;
-				const match = result.data.addressContent.match(regex);
-				this.setData({
-					username: result.data.username,
-					sex: result.data.sex,
-					mobile: result.data.mobile,
-					topic: result.data.topic,
-					address: result.data.addressContent.substring(0, match!.index),
-					houseNumber: result.data.addressContent.substring(((match!.index) as number) + 1, result.data.addressContent.length - 1)
-				})
-				for (let [key, value] of Object.entries(ADDRESS_TOPIC)) {
-					if (value === result.data.topic) {
+				if (result.code === 200 && result.data) {
+					const regex = /\([^)]*\)$/;
+					const match = result.data.addressContent.match(regex);
+					if (match && match.index !== undefined) {
 						this.setData({
-							addressTopic: key
+							username: result.data.username,
+							sex: result.data.sex,
+							mobile: result.data.mobile,
+							topic: result.data.topic as AddressTopicValue,
+							address: result.data.addressContent.substring(0, match.index),
+							houseNumber: result.data.addressContent.substring(match.index + 1, result.data.addressContent.length - 1)
 						})
+						
+						for (const [key, value] of Object.entries(ADDRESS_TOPIC)) {
+							if (value === result.data.topic) {
+								this.setData({
+									addressTopic: key
+								})
+							}
+						}
 					}
+				} else {
+					wx.showToast({
+						title: '加载失败',
+						icon: 'error'
+					})
 				}
+				wx.hideLoading()
+			}).catch(() => {
+				wx.hideLoading()
+				wx.showToast({
+					title: '网络错误',
+					icon: 'error'
+				})
 			})
 		}
-		this.setData({
-			userId: options.userId,
-			typeId: options.typeId,
-			addressId: parseInt(options.addressId)
-		})
 	}
 })

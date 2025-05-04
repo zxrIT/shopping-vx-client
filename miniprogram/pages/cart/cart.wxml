@@ -52,7 +52,7 @@
 	<view class="cartPayCount">
 		合计<text decode="true" style="color: #f3514f;font-weight: bold;font-size: 35rpx;">&nbsp;&nbsp;¥{{priceCount}}</text>
 	</view>
-	<view class="cartPayBtn">
+	<view class="cartPayBtn" bindtap="createOrder">
 		结算({{prodectNumber}})
 	</view>
 </view>

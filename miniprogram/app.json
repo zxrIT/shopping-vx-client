@@ -8,7 +8,9 @@
     "pages/detail/detail",
     "pages/address/address",
     "pages/collect/collect",
-    "pages/addressCU/addressCU"
+    "pages/addressCU/addressCU",
+    "pages/ai/AI",
+    "pages/orders/orders"
   ],
   "window": {
     "navigationBarTitleText": "小张花坊",

@@ -4,5 +4,6 @@ export interface User {
 	token: string
 	addressId: string
 	collect: string
-	shoppingCart: string
+	shoppingCart: string,
+	userIcon: string
 }

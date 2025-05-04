@@ -1,0 +1,134 @@
+page {
+  background-color: #efefef !important;
+  padding: 16rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+page > view:nth-child(n+2) {
+  margin-top: 16rpx;
+}
+
+.profileBgc {
+  width: 100%;
+  height: 400rpx;
+}
+.profileBgc image {
+  width: 100%;
+  height: 100%;
+  border-radius: 5%;
+}
+
+.profileFeature {
+  background-color: white !important;
+  width: 100%;
+  height: 350rpx;
+  border-radius: 5%;
+  padding: 20rpx 0;
+}
+.profileFeature .profileBox {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.profileFeature .profileBox .title {
+  padding: 20rpx 30rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.profileFeature .profileBox .boxItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 20rpx 10rpx;
+  flex: 1;
+}
+.profileFeature .profileBox .boxItem .item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx;
+}
+.profileFeature .profileBox .boxItem .item image {
+  width: 60rpx;
+  height: 60rpx;
+  margin-bottom: 16rpx;
+}
+.profileFeature .profileBox .boxItem .item view {
+  font-size: 26rpx;
+  color: #333;
+}
+
+.profileCart {
+  background-color: white !important;
+  width: 100%;
+  height: 350rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 5%;
+  align-items: center;
+}
+.profileCart .profileRoot {
+  width: 25%;
+  height: 150rpx;
+  margin-left: 20rpx;
+  text-align: center;
+}
+.profileCart .profileRoot image {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+.profileCart .profileMessage {
+  text-align: center;
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+  width: 50%;
+}
+.profileCart .profileBtn {
+  text-align: center;
+  line-height: 80rpx;
+  width: 25%;
+  height: 80rpx;
+  color: #efefef;
+  background-color: #1AAD19;
+  margin-right: 20rpx;
+  border-radius: 40rpx;
+}
+
+.profileService {
+  width: 100%;
+  height: 400rpx;
+}
+.profileService image {
+  width: 100%;
+  height: 100%;
+}
+
+.floating-btn {
+  position: fixed;
+  right: 30rpx;
+  bottom: 120rpx;
+  background-color: #f3514f;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 16rpx rgba(243, 81, 79, 0.3);
+  z-index: 100;
+}
+.floating-btn image {
+  width: 50rpx;
+  height: 50rpx;
+  margin-bottom: 6rpx;
+}
+.floating-btn text {
+  font-size: 22rpx;
+  color: #fff;
+}

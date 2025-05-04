@@ -7,6 +7,18 @@ Page({
 		userObject: {} as User,
 		userInfo: {},
 	},
+
+	navigateToOrders: function () {
+		wx.navigateTo({
+			url: "/pages/orders/orders"
+		})
+	},
+
+	navigateToAI: function () {
+		wx.navigateTo({
+			url:"/pages/ai/AI"
+		})
+	},
 	navigateToAddress: function () {
 		wx.navigateTo({
 			url: "/pages/address/address?userId=" + this.data.userObject.id
@@ -22,8 +34,12 @@ Page({
 			desc: "必须授权才能使用",
 			success: (result) => {
 				requestFunction<ResponseData<User>>({
-					url: "http://localhost:8080/user/login/" + result.userInfo.nickName,
-					method: "GET"
+					url: "http://localhost:8080/user/login",
+					method: "POST",
+					data: {
+						username: result.userInfo.nickName,
+						avatarUrl: result.userInfo.avatarUrl
+					}
 				}).then(resultUser => {
 					this.setData({
 						userInfo: result.userInfo,

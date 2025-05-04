@@ -20,6 +20,10 @@
 	<view class="profileBox">
 		<view class="title">我的功能</view>
 		<view class="boxItem">
+			<view class="item" bind:tap="navigateToOrders">
+				<image src="../../assets/profile/order.png" mode="widthFix" />
+				<view>我的订单</view>
+			</view>
 			<view class="item" bind:tap="navigateToAddress">
 				<image src="../../assets/profile/address.png" mode="widthFix" />
 				<view>地址管理</view>
@@ -28,7 +32,7 @@
 				<image src="../../assets/profile/collect.png" mode="widthFix" />
 				<view>我的收藏</view>
 			</view>
-			<view class="item">
+			<view class="item" bind:tap="navigateToAI">
 				<image src="../../assets/profile/person.png" mode="widthFix" />
 				<view>AI推荐客服</view>
 			</view>
@@ -38,4 +42,10 @@
 
 <view class="profileService">
 	<image src="../../assets/profile/service.png" mode="aspectFill" />
+</view>
+
+<!-- 悬浮按钮 -->
+<view class="floating-btn" bind:tap="navigateToOrders">
+  <image src="../../assets/profile/order.png" mode="aspectFit"></image>
+  <text>我的订单</text>
 </view>

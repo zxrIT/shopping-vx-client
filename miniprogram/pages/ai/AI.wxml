@@ -1,0 +1,32 @@
+<view class="robotTitle">
+  <view class="title">智能客服小李</view>
+  <view class="icon" bindtap="mobile">
+    <image src="../../assets/icon/phone24h.png" mode="aspectFill" />
+  </view>
+</view>
+
+<scroll-view class="aiBox" scroll-y scroll-into-view="{{scrollToView}}" scroll-with-animation>
+  <view wx:for="{{messageList}}" wx:key="index" class="aiBoxItem {{item.role === 0 ? 'right' : ''}}" id="msg-{{index}}">
+    <view class="userIcon">
+      <image src="{{item.role === 1 ? '../../assets/ai/ai.png' : userInfo.userIcon}}" mode="aspectFill" />
+    </view>
+    <view class="message">
+      {{item.showMessage}}
+      <view wx:if="{{item.isTyping}}" class="typing-indicator">
+        <view class="dot"></view>
+        <view class="dot"></view>
+        <view class="dot"></view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<view class="inputBox">
+  <input class="input" 
+         type="text" 
+         value="{{inputValue}}" 
+         placeholder="请输入反馈" 
+         bindinput="onInput"
+         bindconfirm="sendMessage" />
+  <view class="sendBtn" bindtap="sendMessage">发送</view>
+</view> 
